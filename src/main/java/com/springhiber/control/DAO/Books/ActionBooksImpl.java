@@ -9,7 +9,6 @@ import com.springhiber.control.model.Books;
 import java.util.LinkedList;
 import java.util.List;
 import org.hibernate.Query;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,6 +57,16 @@ public class ActionBooksImpl implements ActionBooks{
        query.setParameter("book_id", bookId);
        query.executeUpdate();
         System.out.println("delete book in dao " + bookId +"==============================================");
+    }
+
+    @Override
+    @Transactional
+    public Books findBookById(Integer id) {
+        String hql = "SELECT b FROM Books b WHERE b.id = :id";
+        Query query = sessionFactory.getCurrentSession().createQuery(hql);
+        query.setParameter("id", id);
+        Books book=(Books)query.uniqueResult();
+        return book;
     }
     
 }

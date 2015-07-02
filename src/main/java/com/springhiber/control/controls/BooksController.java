@@ -61,6 +61,18 @@ public class BooksController {
     public ModelAndView addBook(ModelMap model) {
         return new ModelAndView("addbook", "command", new Books());
     }
+    
+    @RequestMapping(value = "/edit/{bookId}",method = RequestMethod.GET)
+    public ModelAndView editBook(@PathVariable("bookId") Integer bookId){
+        
+        Books book = serviceBooks.findById(bookId);
+        
+        ModelAndView modelAndView = new ModelAndView("editform");
+        
+        modelAndView.addObject("author", book.getAuthor());
+        modelAndView.addObject("name",book.getName());
+        return modelAndView;
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public String getAllBooks(ModelMap model) {

@@ -16,4 +16,5 @@ public interface ActionBooks {
     public List<Books> getAllBooks();
     public void insertBook(Books book);
     public void deleteBook(Integer bookId);
+    public Books findBookById(Integer id);
 }

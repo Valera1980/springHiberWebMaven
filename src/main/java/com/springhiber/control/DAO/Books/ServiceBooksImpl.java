@@ -40,4 +40,10 @@ public class ServiceBooksImpl implements ServiceBooks {
       System.out.println("delete book in service=================================================");
     }
 
+    @Override
+    public Books findById(Integer id) {
+    
+        return actionBooks.findBookById(id);
+    }
+
 }

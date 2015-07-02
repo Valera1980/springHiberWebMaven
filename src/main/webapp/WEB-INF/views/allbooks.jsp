@@ -29,6 +29,7 @@
                     <th>author</th>
                     <th>name</th>
                     <th>delete</th>
+                    <th>edit</th>
                 </tr>
                 <c:forEach var="onebook" items="${books}" varStatus="status"> 
                     <tr bgcolor="lightyellow">
@@ -38,6 +39,11 @@
                         <td>
                             <a href="${pageContext.request.contextPath}/books/deletebook/${onebook.id}">
                                 delete
+                            </a>
+                        </td>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/books/edit/${onebook.id}">
+                                edit
                             </a>
                         </td>
                     </tr>

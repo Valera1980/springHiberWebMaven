@@ -16,4 +16,5 @@ public interface ServiceBooks {
     List<Books> getAllItems();
     void insertBook(Books book);
     void deleteBook(Integer idBook);
+    Books findById(Integer id);
 }
