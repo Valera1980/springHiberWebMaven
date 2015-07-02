@@ -6,9 +6,7 @@
 package com.springhiber.control.controls;
 
 import com.springhiber.control.DAO.Books.ServiceBooks;
-import com.springhiber.control.exception.GenericException;
 import com.springhiber.control.model.Books;
-import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,11 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
-import org.springframework.web.servlet.view.RedirectView;
 
 /**
  *
@@ -61,16 +56,16 @@ public class BooksController {
     public ModelAndView addBook(ModelMap model) {
         return new ModelAndView("addbook", "command", new Books());
     }
-    
-    @RequestMapping(value = "/edit/{bookId}",method = RequestMethod.GET)
-    public ModelAndView editBook(@PathVariable("bookId") Integer bookId){
-        
+
+    @RequestMapping(value = "/edit/{bookId}", method = RequestMethod.GET)
+    public ModelAndView editBook(@PathVariable("bookId") Integer bookId) {
+
         Books book = serviceBooks.findById(bookId);
-        
-        ModelAndView modelAndView = new ModelAndView("editform");
-        
+
+        ModelAndView modelAndView = new ModelAndView("editform", "command", new Books());
+
         modelAndView.addObject("author", book.getAuthor());
-        modelAndView.addObject("name",book.getName());
+        modelAndView.addObject("name", book.getName());
         return modelAndView;
     }
 
@@ -82,25 +77,35 @@ public class BooksController {
 
     @RequestMapping(value = "/updatebook", method = RequestMethod.POST)
     public ModelAndView updateBook(@ModelAttribute("book") Books book) {
-       // public ModelAndView updateBook(@ModelAttribute("book") Books book) {
+        // public ModelAndView updateBook(@ModelAttribute("book") Books book) {
         this.serviceBooks.insertBook(book);
         ModelAndView modelAndView = new ModelAndView("redirect_allbooks");
         modelAndView.addObject("books", serviceBooks.getAllItems());
         return modelAndView;
-    
+    }
+
+    @RequestMapping(value = "/editbook", method = RequestMethod.POST)
+    public ModelAndView editBookAction(@RequestParam String author,
+    @RequestParam String name) {
+        Books book = new Books(author, name);
+        this.serviceBooks.editBooks(book);
+        //System.out.println("receive param " + book.toString() + "=============================" );
+        ModelAndView modelAndView = new ModelAndView("redirect_allbooks");
+        modelAndView.addObject("books", serviceBooks.getAllItems());
+        return modelAndView;
+    }
+
 //    @RequestMapping(value = "/updatebook", method = RequestMethod.POST)
 //    public String updateBook(@ModelAttribute("book") Books book,ModelMap model) {
 //       // public ModelAndView updateBook(@ModelAttribute("book") Books book) {
 //        this.serviceBooks.insertBook(book);
 //        model.addAttribute("books", serviceBooks.getAllItems());
 //        return "allbooks";
-        
 //      model = new ModelAndView("allbooks");
 //      re.addFlashAttribute("books", serviceBooks.getAllItems());
 //        model.addObject("books", serviceBooks.getAllItems());
 //       return model;
-   }
-
+    //}
     @RequestMapping(value = "/deletebook/{bookId}", method = RequestMethod.GET)
     public String deleteBook(@PathVariable("bookId") Integer bookId,
             ModelMap model) {
@@ -109,6 +114,7 @@ public class BooksController {
         model.addAttribute("books", serviceBooks.getAllItems());
         return "allbooks";
     }
+
 //    @RequestMapping(method = RequestMethod.GET)
 //    public String welcomeEmployee(ModelMap model) {
 //

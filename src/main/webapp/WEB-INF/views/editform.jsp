@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,7 +13,38 @@
         <title>edit book</title>
     </head>
     <body>
-        author<h1>${author}</h1><br>
-        name<h1>${name}</h1>
+        <div align="center">
+            <h1 style="background-color: lightgreen; color: darkgreen">edit
+               book page</h1>
+        </div>
+        <div align="center">
+            <table  cellspacing="0" cellpadding="6" border="1" widht="60%">
+                <tr>
+                    <td colspan="8"
+                        style="background-color: lightblue; color: darkgreen; font-size: 16pt"
+                        align="center">book Information</td>
+                </tr>
+                <tr>
+                    <td><form:form method="POST" action="editbook">
+                            <table widht="100%">
+                                <tr>
+                                    <td><form:label path="author" name="author">author</form:label></td>
+                                    <td align="left" width="70%"><form:input path="author" value="${author}" /></td>
+                                </tr>
+                                <tr>
+                                    <td><form:label path="name" name="name">name</form:label></td>
+                                    <td align="left"><form:input path="name" value="${name}" /></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td colspan="2"><input type="submit" value="ok" /></td>
+                                </tr>
+                            </table>
+                        </form:form></td>
+                </tr>
+            </table>
+        </div>
+    </body>
     </body>
 </html>

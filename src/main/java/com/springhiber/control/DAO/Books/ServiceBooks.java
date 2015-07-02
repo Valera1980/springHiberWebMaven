@@ -17,4 +17,5 @@ public interface ServiceBooks {
     void insertBook(Books book);
     void deleteBook(Integer idBook);
     Books findById(Integer id);
+    void editBooks(Books books);
 }

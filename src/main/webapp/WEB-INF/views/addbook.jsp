@@ -40,7 +40,7 @@
 
 
                                 <tr>
-                                    <td colspan="2"><input type="submit" id="sub" onclick="subDis()" value="ok" /></td>
+                                    <td colspan="2"><input type="submit"  value="ok" /></td>
                                 </tr>
                             </table>
                         </form:form></td>
@@ -48,10 +48,5 @@
             </table>
         </div>
     </body>
-    <script type="text/javascript" language="javascript">
-        function subDis(){
-            document.getElementById("sub").disabled = true;
-            //alert("click");
-        }        
-    </script>
+   
 </html>

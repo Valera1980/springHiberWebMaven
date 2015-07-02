@@ -21,26 +21,25 @@ import org.springframework.transaction.annotation.Transactional;
  * @author valera
  */
 @Repository
-public class ActionBooksImpl implements ActionBooks{
+public class ActionBooksImpl implements ActionBooks {
 
-    private static final Logger logger = 
-            LoggerFactory.getLogger(ActionBooksImpl.class);
-    
-    
+    private static final Logger logger
+            = LoggerFactory.getLogger(ActionBooksImpl.class);
+
     @Autowired
     private SessionFactory sessionFactory;
-    
+
     @Override
     @Transactional
     public List<Books> getAllBooks() {
-       List<Books> books = new LinkedList<Books>();
+        List<Books> books = new LinkedList<Books>();
 //       Session session = sessionFactory.openSession();
         String hql = "FROM Books";
 //       Query query = session.createQuery(hql);
 //       books = query.list();
-       logger.info("*************************************** book list:: " + books);
-       books = sessionFactory.getCurrentSession().createQuery(hql).list();
-       return books;
+        logger.info("*************************************** book list:: " + books);
+        books = sessionFactory.getCurrentSession().createQuery(hql).list();
+        return books;
     }
 
     @Override
@@ -52,11 +51,11 @@ public class ActionBooksImpl implements ActionBooks{
     @Override
     @Transactional
     public void deleteBook(Integer bookId) {
-       String hql = "DELETE from Books B WHERE B.id = :book_id";
-       Query query = sessionFactory.getCurrentSession().createQuery(hql);
-       query.setParameter("book_id", bookId);
-       query.executeUpdate();
-        System.out.println("delete book in dao " + bookId +"==============================================");
+        String hql = "DELETE from Books B WHERE B.id = :book_id";
+        Query query = sessionFactory.getCurrentSession().createQuery(hql);
+        query.setParameter("book_id", bookId);
+        query.executeUpdate();
+        System.out.println("delete book in dao " + bookId + "==============================================");
     }
 
     @Override
@@ -65,8 +64,14 @@ public class ActionBooksImpl implements ActionBooks{
         String hql = "SELECT b FROM Books b WHERE b.id = :id";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
         query.setParameter("id", id);
-        Books book=(Books)query.uniqueResult();
+        Books book = (Books) query.uniqueResult();
         return book;
     }
-    
+
+    @Override
+    @Transactional
+    public void editBook(Books books) {
+        sessionFactory.getCurrentSession().update(books);
+    }
+
 }

@@ -17,4 +17,5 @@ public interface ActionBooks {
     public void insertBook(Books book);
     public void deleteBook(Integer bookId);
     public Books findBookById(Integer id);
+    public void  editBook(Books books);
 }

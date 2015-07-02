@@ -46,4 +46,9 @@ public class ServiceBooksImpl implements ServiceBooks {
         return actionBooks.findBookById(id);
     }
 
+    @Override
+    public void editBooks(Books books) {
+     actionBooks.editBook(books);
+    }
+
 }
