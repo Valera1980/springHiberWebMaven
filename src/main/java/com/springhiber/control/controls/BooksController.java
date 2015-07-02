@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
+import org.springframework.web.servlet.view.RedirectView;
 
 /**
  *
@@ -67,17 +69,25 @@ public class BooksController {
     }
 
     @RequestMapping(value = "/updatebook", method = RequestMethod.POST)
-    public String updateBook(@ModelAttribute("book") Books book,ModelMap model) {
+    public ModelAndView updateBook(@ModelAttribute("book") Books book) {
        // public ModelAndView updateBook(@ModelAttribute("book") Books book) {
         this.serviceBooks.insertBook(book);
-        model.addAttribute("books", serviceBooks.getAllItems());
-        return "allbooks";
+        ModelAndView modelAndView = new ModelAndView("redirect_allbooks");
+        modelAndView.addObject("books", serviceBooks.getAllItems());
+        return modelAndView;
+    
+//    @RequestMapping(value = "/updatebook", method = RequestMethod.POST)
+//    public String updateBook(@ModelAttribute("book") Books book,ModelMap model) {
+//       // public ModelAndView updateBook(@ModelAttribute("book") Books book) {
+//        this.serviceBooks.insertBook(book);
+//        model.addAttribute("books", serviceBooks.getAllItems());
+//        return "allbooks";
         
 //      model = new ModelAndView("allbooks");
 //      re.addFlashAttribute("books", serviceBooks.getAllItems());
-////        model.addObject("books", serviceBooks.getAllItems());
+//        model.addObject("books", serviceBooks.getAllItems());
 //       return model;
-    }
+   }
 
     @RequestMapping(value = "/deletebook/{bookId}", method = RequestMethod.GET)
     public String deleteBook(@PathVariable("bookId") Integer bookId,
