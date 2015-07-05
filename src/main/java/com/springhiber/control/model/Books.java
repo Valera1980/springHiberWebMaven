@@ -51,6 +51,12 @@ public class Books implements Serializable {
         this.author = author;
         this.name = name;
     }
+
+    public Books(Integer id, String author, String name) {
+        this.id = id;
+        this.author = author;
+        this.name = name;
+    }
     
     
 
@@ -108,7 +114,7 @@ public class Books implements Serializable {
 
     @Override
     public String toString() {
-        return "author=" + author + ", name=" + name;
+        return "id = " + id + " ,author=" + author + ", name=" + name;
     }
 
    

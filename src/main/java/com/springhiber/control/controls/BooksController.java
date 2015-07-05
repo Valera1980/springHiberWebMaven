@@ -64,6 +64,7 @@ public class BooksController {
 
         ModelAndView modelAndView = new ModelAndView("editform", "command", new Books());
 
+        modelAndView.addObject("bookId", bookId);
         modelAndView.addObject("author", book.getAuthor());
         modelAndView.addObject("name", book.getName());
         return modelAndView;
@@ -84,12 +85,15 @@ public class BooksController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/editbook", method = RequestMethod.POST)
-    public ModelAndView editBookAction(@RequestParam String author,
-    @RequestParam String name) {
-        Books book = new Books(author, name);
-        this.serviceBooks.editBooks(book);
-        //System.out.println("receive param " + book.toString() + "=============================" );
+    @RequestMapping(value = "edit/editbook", method = RequestMethod.POST)
+    public ModelAndView editBookAction(
+            @RequestParam ("id") Integer id,
+            @RequestParam ("author") String author,
+            @RequestParam ("name") String name) {
+        Books book = new Books(id,author, name);
+        //this.serviceBooks.editBooks(book);
+        System.out.println("+++++++++++++++++++++++" + "receive param " +
+                book.toString() + "=============================" );
         ModelAndView modelAndView = new ModelAndView("redirect_allbooks");
         modelAndView.addObject("books", serviceBooks.getAllItems());
         return modelAndView;
