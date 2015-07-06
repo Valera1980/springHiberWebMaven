@@ -7,25 +7,30 @@
 	                    http://www.springframework.org/schema/security/spring-security-4.0.xsd"
 >
  
-    <http>
-<!--        auto-config="true">-->
+    <http auto-config="true">
      
-        <intercept-url
-            pattern='/allbooks' access='ROLE_USER,ROLE_ADMIN' />
+        <intercept-url pattern='/allbooks' access='ROLE_ADMIN' />
+        <form-login login-processing-url="/login" loginpage="/loginpage"
+                    username-parameter="username" password-parameter="password"
+                    default-target-url="/allbooks"
+                    authentication-failure-url="/loginPage?auth=fail" />
+        <logout logout-url="/logout" logout-success-url="/logoutPage" />
      
-        <intercept-url
+<!--        <intercept-url
             pattern='/addbook' access='ROLE_USER' />
      
         <intercept-url
-            pattern='/editform' access='ROLE_ADMIN' />
+            pattern='/editform' access='ROLE_ADMIN' />-->
      
     </http>
  
     <authentication-manager>
         <authentication-provider>
             <user-service>
-                <user name="admin" password="adminpassword" authorities="ROLE_ADMIN" />
+<!--                <user name="admin" password="adminpassword" authorities="ROLE_ADMIN" />
                  <user name="ravisoni" password="mypassword" authorities="ROLE_USER" />
+                 <user name="user" password="user" disabled="true" authorities="ROLE_USER" />-->
+                 <user name="ravi" password="ravi@123" authorities="ROLE_ADMIN" />
             </user-service>
         </authentication-provider>
     </authentication-manager>
