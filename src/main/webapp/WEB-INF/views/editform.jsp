@@ -31,15 +31,15 @@
                                 <tr style="visibility: hidden">
 <!--                                    <tr style="visibility: hidden">-->
                                     <td><form:label path="id" name="id">id</form:label></td>
-                                    <td align="left" width="70%"><form:input path="id" value="${bookId}" /></td>
+                                    <td align="left" width="70%"><form:input path="id" value="${book.id}" /></td>
                                 </tr>
                                 <tr>
                                     <td><form:label path="author" name="author">author</form:label></td>
-                                    <td align="left" width="70%"><form:input path="author" value="${author}" /></td>
+                                    <td align="left" width="70%"><form:input path="author" value="${book.author}" /></td>
                                 </tr>
                                 <tr>
                                     <td><form:label path="name" name="name">name</form:label></td>
-                                    <td align="left"><form:input path="name" value="${name}" /></td>
+                                    <td align="left"><form:input path="name" value="${book.name}" /></td>
                                 </tr>
 
 
