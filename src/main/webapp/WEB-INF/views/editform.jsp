@@ -28,7 +28,7 @@
                     <td><form:form method="POST" action="editbook">
                             <table widht="100%">
                                 
-                                <tr>
+                                <tr style="visibility: hidden">
 <!--                                    <tr style="visibility: hidden">-->
                                     <td><form:label path="id" name="id">id</form:label></td>
                                     <td align="left" width="70%"><form:input path="id" value="${bookId}" /></td>

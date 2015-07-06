@@ -91,7 +91,7 @@ public class BooksController {
             @RequestParam ("author") String author,
             @RequestParam ("name") String name) {
         Books book = new Books(id,author, name);
-        //this.serviceBooks.editBooks(book);
+        this.serviceBooks.editBooks(book);
         System.out.println("+++++++++++++++++++++++" + "receive param " +
                 book.toString() + "=============================" );
         ModelAndView modelAndView = new ModelAndView("redirect_allbooks");

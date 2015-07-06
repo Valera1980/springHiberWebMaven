@@ -13,7 +13,7 @@
     </head>
     <body>
         <%
-        String redirectURL = "http://localhost:8080/SpringWebHiberMaven/books";
+        String redirectURL = "/SpringWebHiberMaven/books";
         response.sendRedirect(redirectURL);
         %>
     </body>
