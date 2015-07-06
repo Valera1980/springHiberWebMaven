@@ -85,36 +85,5 @@ public class BooksController {
         return "allbooks";
     }
 
-//    @RequestMapping(method = RequestMethod.GET)
-//    public String welcomeEmployee(ModelMap model) {
-//
-//        model.addAttribute("author", "Valeriy");
-//        model.addAttribute("name", "Gavrilov");
-//        return "hello";
-//    }
-    
-    //    @RequestMapping(method = RequestMethod.GET)
-//    public String welcomeBooks(ModelMap model){
-//        model.addAttribute("hello", "hello from controller BooksController");
-//        return "hello";
-//    }
-//    
-//    @RequestMapping("/testIOException")
-//    public String testIOException(ModelMap modelMap) throws IOException{
-//        if(true){
-//            throw new IOException("This is IOException");
-//        } 
-//        return "hello";
-//    }
-//    
-//    @RequestMapping("/testGenericException")
-//   public String testGenericException(ModelMap model) throws IOException {
-//
-//          if (true) {
-//               // add custom code and message that appear to error page
-//               throw new GenericException("R333555555555555555555555555", "This is a custom message");
-//          }
-//          return "hello";
-//   }
-//   
+  
 }
