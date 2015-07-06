@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -53,7 +52,7 @@ public class BooksController {
 
     @RequestMapping(value = "/updatebook", method = RequestMethod.POST)
     public ModelAndView updateBook(@ModelAttribute("book") Books book) {
-        // public ModelAndView updateBook(@ModelAttribute("book") Books book) {
+        
         this.serviceBooks.insertBook(book);
         ModelAndView modelAndView = new ModelAndView("redirect_allbooks");
         modelAndView.addObject("books", serviceBooks.getAllItems());
@@ -70,8 +69,8 @@ public class BooksController {
             
         //Books book = new Books(id,author, name);
         this.serviceBooks.editBooks(book);
-        System.out.println("+++++++++++++++++++++++" + " receive param " +
-                book.toString() + "=============================" );
+//        System.out.println("+++++++++++++++++++++++" + " receive param " +
+//                book.toString() + "=============================" );
         ModelAndView modelAndView = new ModelAndView("redirect_allbooks");
         modelAndView.addObject("books", serviceBooks.getAllItems());
         return modelAndView;
@@ -81,7 +80,7 @@ public class BooksController {
     public String deleteBook(@PathVariable("bookId") Integer bookId,
             ModelMap model) {
         this.serviceBooks.deleteBook(bookId);
-        System.out.println("delete book in controller id = " + bookId + "=================================================");
+        //System.out.println("delete book in controller id = " + bookId + "=================================================");
         model.addAttribute("books", serviceBooks.getAllItems());
         return "allbooks";
     }
